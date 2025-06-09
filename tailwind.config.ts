@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,16 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// BharatBridge Theme Colors
+				'neon-saffron': '#FF9933',
+				'electric-teal': '#00FFCC',
+				'bright-white': '#FFFFFF',
+				'deep-black': '#000000'
+			},
+			fontFamily: {
+				'poppins': ['Poppins', 'sans-serif'],
+				'orbitron': ['Orbitron', 'monospace'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +94,43 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'neon-glow': {
+					'0%, 100%': {
+						filter: 'drop-shadow(0 0 5px currentColor) drop-shadow(0 0 15px currentColor) drop-shadow(0 0 20px currentColor)'
+					},
+					'50%': {
+						filter: 'drop-shadow(0 0 10px currentColor) drop-shadow(0 0 30px currentColor) drop-shadow(0 0 40px currentColor)'
+					}
+				},
+				'counter-up': {
+					from: {
+						transform: 'translateY(20px)',
+						opacity: '0'
+					},
+					to: {
+						transform: 'translateY(0)',
+						opacity: '1'
+					}
+				},
+				'particle-float': {
+					'0%, 100%': {
+						transform: 'translateY(0px) rotate(0deg)'
+					},
+					'33%': {
+						transform: 'translateY(-20px) rotate(120deg)'
+					},
+					'66%': {
+						transform: 'translateY(10px) rotate(240deg)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'neon-glow': 'neon-glow 2s ease-in-out infinite',
+				'counter-up': 'counter-up 0.6s ease-out',
+				'particle-float': 'particle-float 6s ease-in-out infinite'
 			}
 		}
 	},
