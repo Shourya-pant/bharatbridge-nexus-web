@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, ArrowRight, Play, X, Menu, Star, Globe, Shield, Zap, BarChart3, Truck, FileCheck, Users, Phone, Mail, MessageCircle, Github, Linkedin, Twitter } from 'lucide-react';
+import { ChevronDown, ArrowRight, Play, X, Menu, Star, Globe, Shield, Zap, BarChart3, Truck, FileCheck, Users, Phone, Mail, Github, Linkedin, Twitter } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -16,6 +16,8 @@ const BharatBridge = () => {
   const [counters, setCounters] = useState({ msmes: 0, opportunity: 0, delivery: 0 });
   const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const [isLearnMoreOpen, setIsLearnMoreOpen] = useState(false);
+  const [selectedFeature, setSelectedFeature] = useState(null);
   const [visibleSections, setVisibleSections] = useState(new Set());
   const { toast } = useToast();
 
@@ -95,42 +97,59 @@ const BharatBridge = () => {
     });
   };
 
+  const handleLearnMore = (feature) => {
+    setSelectedFeature(feature);
+    setIsLearnMoreOpen(true);
+  };
+
   const features = [
     {
       icon: <Globe className="w-8 h-8" />,
       title: "Zero-Code Storefront",
       description: "Professional drag-drop templates with multilingual support. Build your global presence in minutes.",
-      demo: "Live template builder with 20+ professional themes"
+      demo: "Live template builder with 20+ professional themes",
+      details: "Create stunning, professional storefronts without any coding knowledge. Our drag-and-drop interface offers 20+ customizable templates optimized for global markets. Each template includes multilingual support, mobile responsiveness, and built-in SEO optimization to help your products reach international customers effectively.",
+      gradient: "premium-card-1"
     },
     {
       icon: <Zap className="w-8 h-8" />,
       title: "AI Market Intelligence",
       description: "Smart market analysis, pricing optimization & promotion strategies powered by global trade data.",
-      demo: "AI suggests optimal strategies for 190+ countries"
+      demo: "AI suggests optimal strategies for 190+ countries",
+      details: "Leverage advanced AI algorithms that analyze global trade patterns, market trends, and competitive pricing across 190+ countries. Get real-time recommendations for optimal pricing, promotional strategies, and market entry timing to maximize your export success.",
+      gradient: "premium-card-2"
     },
     {
       icon: <Shield className="w-8 h-8" />,
       title: "Blockchain Verification",
       description: "Complete product traceability from origin to destination. Build unshakeable trust globally.",
-      demo: "QR-code verification for complete transparency"
+      demo: "QR-code verification for complete transparency",
+      details: "Ensure product authenticity and build customer trust with our blockchain-powered verification system. Every product gets a unique QR code that provides complete traceability from manufacturing to delivery, preventing counterfeiting and building international buyer confidence.",
+      gradient: "premium-card-3"
     },
     {
       icon: <Truck className="w-8 h-8" />,
       title: "Smart Logistics",
       description: "Integrated fulfillment network with real-time tracking and 3-day global delivery promise.",
-      demo: "Live tracking across 40+ countries"
+      demo: "Live tracking across 40+ countries",
+      details: "Access our intelligent logistics network spanning 40+ countries with predictive routing, automated customs handling, and real-time tracking. Our AI-optimized delivery system ensures your products reach customers within 3 days while minimizing shipping costs.",
+      gradient: "premium-card-1"
     },
     {
       icon: <BarChart3 className="w-8 h-8" />,
       title: "Advanced Analytics",
       description: "Comprehensive business intelligence with sales forecasts, inventory optimization and market insights.",
-      demo: "Professional dashboard with predictive analytics"
+      demo: "Professional dashboard with predictive analytics",
+      details: "Make data-driven decisions with our comprehensive analytics suite. Get detailed insights on sales performance, inventory optimization, customer behavior, and market trends. Our predictive analytics help you forecast demand and plan inventory effectively.",
+      gradient: "premium-card-2"
     },
     {
       icon: <FileCheck className="w-8 h-8" />,
       title: "Compliance Suite",
       description: "Automated export documentation, regulatory compliance, and step-by-step guidance.",
-      demo: "One-click compliant document generation"
+      demo: "One-click compliant document generation",
+      details: "Navigate complex export regulations effortlessly with our automated compliance suite. Generate all required documentation with one click, get real-time regulatory updates, and receive step-by-step guidance for each destination country's requirements.",
+      gradient: "premium-card-3"
     }
   ];
 
@@ -192,8 +211,8 @@ const BharatBridge = () => {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Animated Background Elements */}
-        <div className="absolute inset-0 opacity-20 dark:opacity-30">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10"></div>
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute inset-0 luxury-gradient-1"></div>
           {/* Floating Elements */}
           {[...Array(12)].map((_, i) => (
             <div
@@ -294,7 +313,7 @@ const BharatBridge = () => {
 
       {/* About & Founders */}
       <section id="about" className={`py-20 relative transition-all duration-1000 ${visibleSections.has('about') ? 'animate-fade-in-up' : 'opacity-0'}`}>
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-secondary/5"></div>
+        <div className="absolute inset-0 luxury-gradient-2"></div>
         <div className="container mx-auto px-6 relative z-10">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-8">
@@ -339,7 +358,7 @@ const BharatBridge = () => {
 
       {/* Mission & Statistics */}
       <section id="mission-section" className={`py-20 relative overflow-hidden transition-all duration-1000 ${visibleSections.has('mission-section') ? 'animate-fade-in-up' : 'opacity-0'}`}>
-        <div className="absolute inset-0 bg-gradient-to-r from-secondary/10 to-accent/10"></div>
+        <div className="absolute inset-0 luxury-gradient-3"></div>
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
             <h2 className="font-serif text-5xl font-bold text-secondary mb-8">
@@ -387,14 +406,15 @@ const BharatBridge = () => {
 
       {/* Features Section */}
       <section id="features" className={`py-20 relative transition-all duration-1000 ${visibleSections.has('features') ? 'animate-fade-in-up' : 'opacity-0'}`}>
-        <div className="container mx-auto px-6">
+        <div className="absolute inset-0 luxury-gradient-1"></div>
+        <div className="container mx-auto px-6 relative z-10">
           <h2 className="font-serif text-5xl font-bold text-center text-secondary mb-16">
             Professional Features
           </h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <Card key={index} className="glass-effect border-primary/30 hover:scale-105 transition-all duration-500 group elegant-shadow">
+              <Card key={index} className={`glass-effect border-primary/30 hover:scale-105 transition-all duration-500 group elegant-shadow ${feature.gradient}`}>
                 <CardHeader>
                   <div className="text-primary mb-4 group-hover:animate-wiggle">
                     {feature.icon}
@@ -410,7 +430,12 @@ const BharatBridge = () => {
                       ✨ {feature.demo}
                     </p>
                   </div>
-                  <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-white">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="border-primary text-primary hover:bg-primary hover:text-white"
+                    onClick={() => handleLearnMore(feature)}
+                  >
                     Learn More
                   </Button>
                 </CardContent>
@@ -420,9 +445,37 @@ const BharatBridge = () => {
         </div>
       </section>
 
+      {/* Learn More Modal */}
+      <Dialog open={isLearnMoreOpen} onOpenChange={setIsLearnMoreOpen}>
+        <DialogContent className="glass-effect border-primary/50 max-w-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-primary font-serif text-2xl flex items-center gap-3">
+              {selectedFeature?.icon}
+              {selectedFeature?.title}
+            </DialogTitle>
+            <DialogDescription className="text-lg mt-4">
+              {selectedFeature?.details}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="mt-6 p-4 bg-primary/10 rounded-lg">
+            <p className="text-primary font-semibold">
+              ✨ {selectedFeature?.demo}
+            </p>
+          </div>
+          <div className="flex gap-4 mt-6">
+            <Button className="professional-gradient text-white flex-1" onClick={() => setIsWaitlistOpen(true)}>
+              Join Waitlist
+            </Button>
+            <Button variant="outline" className="border-secondary text-secondary" onClick={() => setIsLearnMoreOpen(false)}>
+              Close
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       {/* Dashboard Preview */}
       <section id="demo" className={`py-20 relative overflow-hidden transition-all duration-1000 ${visibleSections.has('demo') ? 'animate-fade-in-up' : 'opacity-0'}`}>
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 luxury-gradient-2">
           {[...Array(15)].map((_, i) => (
             <div
               key={i}
@@ -506,7 +559,7 @@ const BharatBridge = () => {
 
       {/* Testimonials */}
       <section className={`py-20 relative transition-all duration-1000 ${visibleSections.has('testimonials') ? 'animate-fade-in-up' : 'opacity-0'}`} id="testimonials">
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary/5 to-transparent"></div>
+        <div className="absolute inset-0 luxury-gradient-3"></div>
         <div className="container mx-auto px-6 relative z-10">
           <h2 className="font-serif text-5xl font-bold text-center text-secondary mb-16">
             Success Stories
@@ -553,26 +606,26 @@ const BharatBridge = () => {
 
       {/* Join Waitlist Re-emphasized */}
       <section className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-neon-saffron/10 via-electric-teal/10 to-neon-saffron/10"></div>
+        <div className="absolute inset-0 luxury-gradient-1"></div>
         <div className="container mx-auto px-6 relative z-10 text-center">
-          <h2 className="font-orbitron text-5xl font-bold neon-glow-saffron mb-8">
+          <h2 className="font-serif text-5xl font-bold text-primary mb-8">
             Ready to Transform Your Business?
           </h2>
           <p className="text-xl mb-12 max-w-3xl mx-auto">
             Join thousands of Indian MSMEs already on the waitlist. Be part of the export revolution.
           </p>
           
-          <Card className="max-w-2xl mx-auto bg-deep-black/80 border-neon-saffron/50">
+          <Card className="max-w-2xl mx-auto glass-effect border-primary/50">
             <CardContent className="p-8">
               <form onSubmit={handleWaitlistSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
-                  <Input placeholder="Full Name" className="bg-deep-black/50 border-gray-600" />
-                  <Input placeholder="Email" type="email" className="bg-deep-black/50 border-gray-600" />
+                  <Input placeholder="Full Name" className="glass-effect border-primary/30" />
+                  <Input placeholder="Email" type="email" className="glass-effect border-primary/30" />
                 </div>
                 <div className="grid md:grid-cols-2 gap-4">
-                  <Input placeholder="Business Name" className="bg-deep-black/50 border-gray-600" />
+                  <Input placeholder="Business Name" className="glass-effect border-primary/30" />
                   <Select>
-                    <SelectTrigger className="bg-deep-black/50 border-gray-600">
+                    <SelectTrigger className="glass-effect border-primary/30">
                       <SelectValue placeholder="Product Category" />
                     </SelectTrigger>
                     <SelectContent>
@@ -585,23 +638,23 @@ const BharatBridge = () => {
                   </Select>
                 </div>
                 
-                <div className="bg-electric-teal/10 p-4 rounded-lg">
-                  <p className="text-sm text-electric-teal">
+                <div className="bg-accent/10 p-4 rounded-lg glass-effect">
+                  <p className="text-sm text-accent">
                     💡 <strong>Referral Bonus:</strong> Invite colleagues to climb higher in line!
                   </p>
                   <div className="mt-2 flex gap-2">
                     <Input 
                       value="bharatbridge.in/ref/yourcode" 
                       readOnly 
-                      className="bg-deep-black/50 border-gray-600 text-sm" 
+                      className="glass-effect border-accent/30 text-sm" 
                     />
-                    <Button size="sm" variant="outline" className="text-electric-teal border-electric-teal">
+                    <Button size="sm" variant="outline" className="text-accent border-accent">
                       Copy
                     </Button>
                   </div>
                 </div>
                 
-                <Button type="submit" className="w-full gradient-saffron text-deep-black font-bold text-lg py-4 hover-glow-saffron">
+                <Button type="submit" className="w-full professional-gradient text-white font-bold text-lg py-4 hover:scale-105 transition-all duration-300">
                   Secure My Spot
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
@@ -613,11 +666,11 @@ const BharatBridge = () => {
 
       {/* Contact & Support */}
       <section id="contact" className="py-20 relative">
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 luxury-gradient-2">
           {[...Array(15)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-1 h-1 bg-neon-saffron rounded-full animate-particle-float opacity-60"
+              className="absolute w-1 h-1 bg-primary rounded-full floating-animation opacity-60"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
@@ -629,14 +682,14 @@ const BharatBridge = () => {
         </div>
         
         <div className="container mx-auto px-6 relative z-10">
-          <h2 className="font-orbitron text-5xl font-bold text-center neon-glow-electric-teal mb-16">
+          <h2 className="font-serif text-5xl font-bold text-center text-secondary mb-16">
             Get in Touch
           </h2>
           
           <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            <Card className="bg-deep-black/80 border-neon-saffron/50">
+            <Card className="glass-effect border-primary/50">
               <CardHeader>
-                <CardTitle className="text-neon-saffron font-orbitron">Send us a Message</CardTitle>
+                <CardTitle className="text-primary font-serif">Send us a Message</CardTitle>
               </CardHeader>
               <CardContent>
                 <form onSubmit={handleContactSubmit} className="space-y-6">
@@ -669,7 +722,7 @@ const BharatBridge = () => {
                     <Label htmlFor="message">Message</Label>
                     <Textarea id="message" placeholder="Tell us how we can help..." rows={4} />
                   </div>
-                  <Button type="submit" className="w-full gradient-saffron text-deep-black font-bold">
+                  <Button type="submit" className="w-full professional-gradient text-white font-bold">
                     Send Message
                   </Button>
                 </form>
@@ -677,52 +730,52 @@ const BharatBridge = () => {
             </Card>
             
             <div className="space-y-8">
-              <Card className="bg-deep-black/80 border-electric-teal/50">
+              <Card className="glass-effect border-secondary/50">
                 <CardHeader>
-                  <CardTitle className="text-electric-teal font-orbitron">Contact Info</CardTitle>
+                  <CardTitle className="text-secondary font-serif">Contact Info</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
                   <div className="flex items-center space-x-4">
-                    <Mail className="w-6 h-6 text-neon-saffron" />
+                    <Mail className="w-6 h-6 text-primary" />
                     <div>
                       <p className="font-semibold">Email</p>
-                      <p className="text-gray-300">support@bharatbridge.in</p>
+                      <p className="text-muted-foreground">support@bharatbridge.in</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <Phone className="w-6 h-6 text-electric-teal" />
+                    <Phone className="w-6 h-6 text-secondary" />
                     <div>
                       <p className="font-semibold">Phone</p>
-                      <p className="text-gray-300">+91 98765 43210</p>
+                      <p className="text-muted-foreground">+91 98765 43210</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <MessageCircle className="w-6 h-6 text-neon-saffron" />
+                    <Users className="w-6 h-6 text-accent" />
                     <div>
                       <p className="font-semibold">WhatsApp</p>
-                      <p className="text-gray-300">Chat with our team</p>
+                      <p className="text-muted-foreground">Chat with our team</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
               
-              <Card className="bg-deep-black/80 border-neon-saffron/50">
+              <Card className="glass-effect border-primary/50">
                 <CardHeader>
-                  <CardTitle className="text-neon-saffron font-orbitron">Office Hours</CardTitle>
+                  <CardTitle className="text-primary font-serif">Office Hours</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
                     <div className="flex justify-between">
                       <span>Monday - Friday</span>
-                      <span className="text-electric-teal">9 AM - 7 PM IST</span>
+                      <span className="text-secondary">9 AM - 7 PM IST</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Saturday</span>
-                      <span className="text-electric-teal">10 AM - 4 PM IST</span>
+                      <span className="text-secondary">10 AM - 4 PM IST</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Sunday</span>
-                      <span className="text-gray-400">Closed</span>
+                      <span className="text-muted-foreground">Closed</span>
                     </div>
                   </div>
                 </CardContent>
@@ -733,78 +786,141 @@ const BharatBridge = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-deep-black border-t border-gray-800 py-16">
+      <footer className="bg-background/80 backdrop-blur-lg border-t border-border py-16">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <h3 className="font-orbitron text-xl font-bold text-neon-saffron mb-4">Company</h3>
+              <h3 className="font-serif text-xl font-bold text-primary mb-4">Company</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-electric-teal">About</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-electric-teal">Careers</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-electric-teal">Press</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-electric-teal">News</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-secondary">About</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-secondary">Careers</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-secondary">Press</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-secondary">News</a></li>
               </ul>
             </div>
             
             <div>
-              <h3 className="font-orbitron text-xl font-bold text-electric-teal mb-4">Product</h3>
+              <h3 className="font-serif text-xl font-bold text-secondary mb-4">Product</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-neon-saffron">Features</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-neon-saffron">Pricing</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-neon-saffron">Dashboard Demo</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-neon-saffron">API</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-primary">Features</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-primary">Pricing</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-primary">Dashboard Demo</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-primary">API</a></li>
               </ul>
             </div>
             
             <div>
-              <h3 className="font-orbitron text-xl font-bold text-neon-saffron mb-4">Resources</h3>
+              <h3 className="font-serif text-xl font-bold text-primary mb-4">Resources</h3>
               <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-electric-teal">Blog</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-electric-teal">FAQ</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-electric-teal">Documentation</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-electric-teal">Help Center</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-secondary">Blog</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-secondary">FAQ</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-secondary">Documentation</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-secondary">Help Center</a></li>
               </ul>
             </div>
             
             <div>
-              <h3 className="font-orbitron text-xl font-bold text-electric-teal mb-4">Legal</h3>
+              <h3 className="font-serif text-xl font-bold text-secondary mb-4">Legal</h3>
               <ul className="space-y-2 mb-6">
-                <li><a href="#" className="text-gray-400 hover:text-neon-saffron">Privacy Policy</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-neon-saffron">Terms of Service</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-neon-saffron">Cookie Policy</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-primary">Privacy Policy</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-primary">Terms of Service</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-primary">Cookie Policy</a></li>
               </ul>
               
               <div className="flex space-x-4">
-                <a href="#" className="text-gray-400 hover:text-neon-saffron">
+                <a href="#" className="text-muted-foreground hover:text-primary">
                   <Github className="w-6 h-6" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-electric-teal">
+                <a href="#" className="text-muted-foreground hover:text-secondary">
                   <Linkedin className="w-6 h-6" />
                 </a>
-                <a href="#" className="text-gray-400 hover:text-neon-saffron">
+                <a href="#" className="text-muted-foreground hover:text-primary">
                   <Twitter className="w-6 h-6" />
                 </a>
               </div>
             </div>
           </div>
           
-          <div className="border-t border-gray-800 mt-12 pt-8 text-center">
-            <p className="text-gray-400">
+          <div className="border-t border-border mt-12 pt-8 text-center">
+            <p className="text-muted-foreground">
               © 2025 BharatBridge. Empowering India's MSMEs. ❤️ Made in India
             </p>
           </div>
         </div>
       </footer>
 
-      {/* Live Chat Bubble */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <Button 
-          className="bg-secondary hover:bg-secondary/90 text-white rounded-full w-16 h-16 hover:scale-110 transition-all duration-300 group elegant-shadow cartoon-bounce"
-          onClick={() => setIsContactOpen(true)}
-        >
-          <MessageCircle className="w-6 h-6 group-hover:animate-wiggle" />
-        </Button>
-      </div>
+      {/* Waitlist Modal */}
+      <Dialog open={isWaitlistOpen} onOpenChange={setIsWaitlistOpen}>
+        <DialogContent className="glass-effect border-primary/50">
+          <DialogHeader>
+            <DialogTitle className="text-primary font-serif">Join Our Professional Network</DialogTitle>
+            <DialogDescription>
+              Be among the first to access BharatBridge's professional export platform.
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleWaitlistSubmit} className="space-y-4">
+            <div>
+              <Label htmlFor="name">Full Name</Label>
+              <Input id="name" placeholder="Your full name" required />
+            </div>
+            <div>
+              <Label htmlFor="email">Email</Label>
+              <Input id="email" type="email" placeholder="your@email.com" required />
+            </div>
+            <div>
+              <Label htmlFor="business">Business Name</Label>
+              <Input id="business" placeholder="Your business name" required />
+            </div>
+            <div>
+              <Label htmlFor="category">Product Category</Label>
+              <Select>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select category" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="textiles">Textiles & Garments</SelectItem>
+                  <SelectItem value="spices">Spices & Food</SelectItem>
+                  <SelectItem value="handicrafts">Handicrafts</SelectItem>
+                  <SelectItem value="jewelry">Jewelry</SelectItem>
+                  <SelectItem value="other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <Button type="submit" className="w-full professional-gradient text-white font-semibold">
+              Secure My Position
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
+
+      {/* Contact Modal */}
+      <Dialog open={isContactOpen} onOpenChange={setIsContactOpen}>
+        <DialogContent className="glass-effect border-secondary/50">
+          <DialogHeader>
+            <DialogTitle className="text-secondary font-serif">Contact Our Team</DialogTitle>
+            <DialogDescription>
+              Get in touch with our experts for personalized assistance.
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handleContactSubmit} className="space-y-4">
+            <div>
+              <Label htmlFor="contact-name-modal">Name</Label>
+              <Input id="contact-name-modal" placeholder="Your name" required />
+            </div>
+            <div>
+              <Label htmlFor="contact-email-modal">Email</Label>
+              <Input id="contact-email-modal" type="email" placeholder="your@email.com" required />
+            </div>
+            <div>
+              <Label htmlFor="contact-message">Message</Label>
+              <Textarea id="contact-message" placeholder="How can we help you?" rows={4} required />
+            </div>
+            <Button type="submit" className="w-full bg-secondary hover:bg-secondary/90 text-white font-semibold">
+              Send Message
+            </Button>
+          </form>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

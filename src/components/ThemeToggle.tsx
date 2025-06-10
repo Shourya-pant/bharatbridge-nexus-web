@@ -24,7 +24,7 @@ const ThemeToggle = () => {
       variant="outline"
       size="icon"
       onClick={toggleTheme}
-      className="fixed top-4 right-4 z-50 glass-effect hover:scale-110 transition-all duration-300 cartoon-bounce"
+      className="fixed top-6 right-6 z-50 glass-effect hover:scale-110 transition-all duration-300 border-primary/30"
     >
       {theme === 'light' ? (
         <Moon className="h-5 w-5 transition-all" />

@@ -103,6 +103,61 @@
   body {
     @apply bg-background text-foreground font-sans transition-colors duration-300;
     font-family: 'Inter', system-ui, sans-serif;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    background: linear-gradient(135deg, 
+      hsl(var(--background)) 0%, 
+      hsl(220 20% 5%) 25%, 
+      hsl(var(--primary)/0.1) 50%, 
+      hsl(var(--secondary)/0.1) 75%, 
+      hsl(var(--background)) 100%);
+    animation: gradient-shift 15s ease infinite;
+  }
+
+  .light body::before {
+    background: linear-gradient(135deg, 
+      hsl(300 100% 97%) 0%, 
+      hsl(200 100% 95%) 20%, 
+      hsl(120 100% 96%) 40%, 
+      hsl(50 100% 95%) 60%, 
+      hsl(270 100% 96%) 80%, 
+      hsl(30 100% 95%) 100%);
+    animation: light-gradient-shift 20s ease infinite;
+  }
+
+  /* Floating orbs for premium feel */
+  body::after {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    z-index: -1;
+    background: 
+      radial-gradient(circle at 20% 20%, hsl(var(--primary)/0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, hsl(var(--secondary)/0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 60%, hsl(var(--accent)/0.1) 0%, transparent 50%);
+    animation: orb-float 25s ease-in-out infinite;
+  }
+
+  .light body::after {
+    background: 
+      radial-gradient(circle at 20% 20%, hsl(var(--pastel-pink)/0.8) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, hsl(var(--pastel-blue)/0.8) 0%, transparent 50%),
+      radial-gradient(circle at 40% 60%, hsl(var(--pastel-green)/0.8) 0%, transparent 50%),
+      radial-gradient(circle at 60% 20%, hsl(var(--pastel-purple)/0.6) 0%, transparent 50%),
+      radial-gradient(circle at 20% 80%, hsl(var(--pastel-yellow)/0.6) 0%, transparent 50%);
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -116,12 +171,35 @@
     background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
   }
 
+  .luxury-gradient-1 {
+    background: linear-gradient(135deg, 
+      hsl(var(--primary)/0.2) 0%, 
+      hsl(var(--secondary)/0.15) 50%, 
+      hsl(var(--accent)/0.1) 100%);
+  }
+
+  .luxury-gradient-2 {
+    background: linear-gradient(135deg, 
+      hsl(var(--secondary)/0.2) 0%, 
+      hsl(var(--accent)/0.15) 50%, 
+      hsl(var(--primary)/0.1) 100%);
+  }
+
+  .luxury-gradient-3 {
+    background: linear-gradient(135deg, 
+      hsl(var(--accent)/0.2) 0%, 
+      hsl(var(--primary)/0.15) 50%, 
+      hsl(var(--secondary)/0.1) 100%);
+  }
+
   .glass-effect {
     @apply backdrop-blur-lg bg-white/10 border border-white/20;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   }
 
   .glass-effect-light {
     @apply backdrop-blur-lg bg-white/60 border border-white/40;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
   }
 
   .elegant-shadow {
@@ -158,6 +236,63 @@
 
   .pastel-bg-3 {
     background: linear-gradient(135deg, hsl(var(--pastel-purple)) 0%, hsl(var(--pastel-orange)) 100%);
+  }
+
+  .premium-card-1 {
+    background: linear-gradient(135deg, 
+      hsl(var(--primary)/0.1) 0%, 
+      hsl(var(--secondary)/0.05) 100%);
+  }
+
+  .premium-card-2 {
+    background: linear-gradient(135deg, 
+      hsl(var(--secondary)/0.1) 0%, 
+      hsl(var(--accent)/0.05) 100%);
+  }
+
+  .premium-card-3 {
+    background: linear-gradient(135deg, 
+      hsl(var(--accent)/0.1) 0%, 
+      hsl(var(--primary)/0.05) 100%);
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes light-gradient-shift {
+  0% {
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 100% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+@keyframes orb-float {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(30px, -30px) rotate(120deg);
+  }
+  66% {
+    transform: translate(-20px, 20px) rotate(240deg);
   }
 }
 
